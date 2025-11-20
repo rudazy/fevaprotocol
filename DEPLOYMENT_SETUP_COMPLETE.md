@@ -175,16 +175,18 @@ npm run verify arc
 
 ## 📊 Expected Gas Costs
 
-| Network | Contract | Estimated Gas | Estimated Cost (50 gwei) |
-|---------|----------|---------------|--------------------------|
+| Network | Contract | Estimated Gas | Estimated Cost |
+|---------|----------|---------------|----------------|
 | Sepolia | FEVToken | ~1,500,000 | ~0.075 ETH |
-| Arc | FEVToken | ~1,500,000 | ~0.075 ETH |
-| Arc | DEXFactory | ~2,000,000 | ~0.100 ETH |
-| Arc | DEXRouter | ~2,500,000 | ~0.125 ETH |
-| Arc | TokenFactory | ~3,000,000 | ~0.150 ETH |
-| **TOTAL** | **All Contracts** | **~10,500,000** | **~0.525 ETH** |
+| Arc | FEVToken | ~1,500,000 | ~75 USDC |
+| Arc | DEXFactory | ~2,000,000 | ~100 USDC |
+| Arc | DEXRouter | ~2,500,000 | ~125 USDC |
+| Arc | TokenFactory | ~3,000,000 | ~150 USDC |
+| **TOTAL** | **All Contracts** | **~10,500,000** | **~0.075 ETH + ~450 USDC** |
 
-**Recommendation:** Have at least 0.1 ETH on Sepolia and 0.6 ETH on Arc
+**⚠️ IMPORTANT:** Arc uses USDC as gas token, not ETH!
+
+**Recommendation:** Have at least 0.1 ETH on Sepolia and 500 USDC on Arc
 
 ---
 

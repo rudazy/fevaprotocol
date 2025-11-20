@@ -144,7 +144,7 @@ echo ".env" >> .gitignore
 
 ---
 
-## 💰 Getting Testnet ETH
+## 💰 Getting Testnet Tokens
 
 ### Sepolia Testnet ETH
 
@@ -167,22 +167,25 @@ echo ".env" >> .gitignore
    - Amount: 0.5 ETH
    - Requires Infura account
 
-### Arc Testnet ETH
+### Arc Testnet USDC (Gas Token)
 
-**You need ~0.5 ETH on Arc for all contracts (FEV, Factory, Router, TokenFactory)**
+**⚠️ IMPORTANT: Arc Testnet uses USDC as the gas token, NOT ETH!**
+
+**You need ~500 USDC on Arc for all contracts (FEV, Factory, Router, TokenFactory)**
 
 1. **Arc Faucet**
    - URL: [https://faucet-arc-testnet.xana.net](https://faucet-arc-testnet.xana.net)
-   - Amount: Varies
+   - Token: USDC (used for gas fees)
+   - Amount: Varies (request at least 500 USDC)
    - May require social verification
 
 ### Verify Balance
 
 ```bash
-# Check Sepolia balance
+# Check Sepolia ETH balance
 npx hardhat run scripts/check-balance.js --network sepolia
 
-# Check Arc balance
+# Check Arc USDC balance (gas token)
 npx hardhat run scripts/check-balance.js --network arc
 ```
 
@@ -248,7 +251,7 @@ npx hardhat run scripts/deploy-arc.js --network arc
 
 📍 Deploying to: Arc Testnet
 👛 Deployer address: 0xYourAddress
-💰 Deployer balance: 0.5 ETH
+💰 Deployer balance: 500.0 USDC (gas token)
 
 📦 Step 1/4: Deploying FEVToken...
 ✅ FEVToken deployed to: 0xFEVAddress

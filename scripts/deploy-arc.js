@@ -1,6 +1,6 @@
-import hre from "hardhat";
-import { writeFileSync, readFileSync, existsSync } from "fs";
-import { join } from "path";
+const hre = require("hardhat");
+const { writeFileSync, readFileSync, existsSync } = require("fs");
+const { join } = require("path");
 
 const DEPLOYMENTS_FILE = join(process.cwd(), "deployments.json");
 
@@ -35,10 +35,10 @@ async function main() {
 
   console.log("📍 Deploying to: Arc Testnet");
   console.log("👛 Deployer address:", deployer.address);
-  console.log("💰 Deployer balance:", hre.ethers.formatEther(balance), "ETH\n");
+  console.log("💰 Deployer balance:", hre.ethers.formatUnits(balance, 6), "USDC (gas token)\n");
 
   if (balance === 0n) {
-    throw new Error("❌ Deployer account has no balance! Get testnet ETH from https://faucet-arc-testnet.xana.net");
+    throw new Error("❌ Deployer account has no balance! Get testnet USDC from https://faucet-arc-testnet.xana.net\n⚠️  NOTE: Arc uses USDC as the gas token, not ETH!");
   }
 
   // Read existing deployments
@@ -135,16 +135,9 @@ async function main() {
 
     // ===== Deploy Token Factory =====
     console.log("📦 Step 4/4: Deploying TokenFactory...");
-    console.log("   Factory:", factoryAddress);
-    console.log("   Router:", routerAddress);
-    console.log("   FEV Token:", fevAddress);
 
     const TokenFactory = await hre.ethers.getContractFactory("TokenFactory");
-    const tokenFactory = await TokenFactory.deploy(
-      factoryAddress,
-      routerAddress,
-      fevAddress
-    );
+    const tokenFactory = await TokenFactory.deploy();
 
     console.log("⏳ Waiting for deployment transaction...");
     await tokenFactory.waitForDeployment();
@@ -174,7 +167,7 @@ async function main() {
 
     const totalSupply = await fevToken.totalSupply();
     const decimals = await fevToken.decimals();
-    const factoryOwner = await factory.owner();
+    const feeToSetter = await factory.feeToSetter();
     const routerFactory = await router.factory();
     const routerFEV = await router.FEV();
 
@@ -185,8 +178,8 @@ async function main() {
     console.log("     Owner:", await fevToken.owner());
 
     console.log("\n   DEXFactory:");
-    console.log("     Owner:", factoryOwner);
-    console.log("     Pair Code Hash:", await factory.INIT_CODE_PAIR_HASH());
+    console.log("     Fee To Setter:", feeToSetter);
+    console.log("     Total Pairs:", (await factory.allPairsLength()).toString());
 
     console.log("\n   DEXRouter:");
     console.log("     Factory:", routerFactory);
@@ -195,9 +188,8 @@ async function main() {
     console.log("     FEV Match:", routerFEV === fevAddress ? "✅" : "❌");
 
     console.log("\n   TokenFactory:");
-    console.log("     Factory:", await tokenFactory.factory());
-    console.log("     Router:", await tokenFactory.router());
-    console.log("     FEV:", await tokenFactory.FEV());
+    console.log("     Deployed:", tokenFactoryAddress);
+    console.log("     Total Tokens Created:", (await tokenFactory.getAllTokensCount()).toString());
 
     console.log("\n🎉 Arc Testnet deployment complete!");
 

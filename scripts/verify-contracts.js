@@ -1,6 +1,6 @@
-import hre from "hardhat";
-import { readFileSync, existsSync } from "fs";
-import { join } from "path";
+const hre = require("hardhat");
+const { readFileSync, existsSync } = require("fs");
+const { join } = require("path");
 
 const DEPLOYMENTS_FILE = join(process.cwd(), "deployments.json");
 
@@ -108,7 +108,7 @@ async function verifyArc() {
   // Verify TokenFactory
   await verifyContract(
     TokenFactory,
-    [DEXFactory, DEXRouter, FEVToken],
+    [], // TokenFactory has no constructor arguments
     "TokenFactory",
     "Arc"
   );

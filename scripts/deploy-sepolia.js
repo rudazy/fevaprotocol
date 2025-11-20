@@ -1,6 +1,6 @@
-import hre from "hardhat";
-import { writeFileSync, readFileSync, existsSync } from "fs";
-import { join } from "path";
+const hre = require("hardhat");
+const { writeFileSync, readFileSync, existsSync } = require("fs");
+const { join } = require("path");
 
 const DEPLOYMENTS_FILE = join(process.cwd(), "deployments.json");
 

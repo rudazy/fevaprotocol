@@ -1,0 +1,19 @@
+{
+  "sepolia": {
+    "FEVToken": "0xaa3Ae25eBac250Ff67F4d9e3195C4C7610055067",
+    "deployedAt": "2025-11-20T21:43:36.707Z",
+    "deployer": "0x60C05e2d820CE989E944ED4e7bb33bAEB8705c62",
+    "network": "sepolia",
+    "chainId": 11155111
+  },
+  "arc": {
+    "FEVToken": "0xb835C66Ade11a20A4C022cA64237027eA5B5fc50",
+    "DEXFactory": "0x5EE85b15F60786824b9D586CAD101Ebc9A6a0bAB",
+    "DEXRouter": "0x57eB45CF116A835CFFf5A244820EDC6b63963468",
+    "TokenFactory": "0x9855CF5c109DAdd78735D4E04430Ab067C735Bc1",
+    "deployedAt": "2025-11-20T22:38:00.125Z",
+    "deployer": "0x60C05e2d820CE989E944ED4e7bb33bAEB8705c62",
+    "network": "arc",
+    "chainId": 8668
+  }
+}

@@ -1,8 +1,8 @@
-import "@nomicfoundation/hardhat-toolbox";
-import "dotenv/config";
+require("@nomicfoundation/hardhat-ethers");
+require("dotenv/config");
 
 /** @type import('hardhat/config').HardhatUserConfig */
-export default {
+module.exports = {
   solidity: {
     version: "0.8.20",
     settings: {
@@ -10,21 +10,22 @@ export default {
         enabled: true,
         runs: 200,
       },
+      viaIR: true,
     },
   },
   networks: {
-    // Arc Testnet Configuration
+    // Arc Testnet Configuration (Circle's Arc)
     arc: {
-      url: process.env.ARC_RPC_URL || "https://rpc-arc-testnet.xana.net",
-      chainId: 8668,
-      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      url: process.env.ARC_RPC_URL || "https://rpc.testnet.arc.network",
+      chainId: 5042002,
+      accounts: (process.env.PRIVATE_KEY && process.env.PRIVATE_KEY.length === 64) ? [process.env.PRIVATE_KEY] : [],
       gasPrice: "auto",
     },
     // Sepolia Testnet Configuration
     sepolia: {
       url: process.env.SEPOLIA_RPC_URL || `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
       chainId: 11155111,
-      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      accounts: (process.env.PRIVATE_KEY && process.env.PRIVATE_KEY.length === 64) ? [process.env.PRIVATE_KEY] : [],
       gasPrice: "auto",
     },
     // Hardhat local network
@@ -40,15 +41,15 @@ export default {
   etherscan: {
     apiKey: {
       sepolia: process.env.ETHERSCAN_API_KEY || "",
-      arc: "no-api-key-needed", // Arc testnet might not have Etherscan verification
+      arc: "no-api-key-needed", // Arc testnet verification
     },
     customChains: [
       {
         network: "arc",
-        chainId: 8668,
+        chainId: 5042002,
         urls: {
-          apiURL: "https://explorer-arc-testnet.xana.net/api",
-          browserURL: "https://explorer-arc-testnet.xana.net"
+          apiURL: "https://testnet.arcscan.app/api",
+          browserURL: "https://testnet.arcscan.app"
         }
       }
     ]
