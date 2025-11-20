@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-black: #000000;
+  --secondary-black: #0a0a0a;
+  --card-black: #111111;
+  --primary-red: #FF0000;
+  --accent-red: #CC0000;
+  --red-glow: rgba(255, 0, 0, 0.3);
+  --primary-blue: #0066FF;
+  --accent-blue: #0052CC;
+  --blue-glow: rgba(0, 102, 255, 0.3);
+  --off-white: #F5F5F5;
+  --light-gray: #CCCCCC;
+  --dark-gray: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--primary-black);
+  color: var(--off-white);
+  min-height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dark-gray);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-red);
+}
+
+/* Custom Utilities */
+.glass-effect {
+  background: rgba(17, 17, 17, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.border-gradient {
+  border-image: linear-gradient(135deg, var(--primary-red), var(--primary-blue)) 1;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply px-6 py-3 bg-primary-red text-off-white font-semibold rounded-lg
+         transition-all duration-300 hover:shadow-red-glow hover:scale-105
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-primary-blue text-off-white font-semibold rounded-lg
+         transition-all duration-300 hover:shadow-blue-glow hover:scale-105
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+}
+
+.btn-outline {
+  @apply px-6 py-3 border-2 border-primary-red text-primary-red font-semibold rounded-lg
+         transition-all duration-300 hover:bg-primary-red hover:text-off-white;
+}
+
+/* Card Styles */
+.card {
+  @apply bg-card-black border border-dark-gray rounded-xl p-6
+         transition-all duration-300 hover:border-primary-red;
+}
+
+/* Input Styles */
+.input-field {
+  @apply w-full px-4 py-3 bg-secondary-black border border-dark-gray rounded-lg
+         text-off-white placeholder-light-gray
+         focus:outline-none focus:border-primary-blue
+         transition-colors duration-300;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  @apply inline-block w-8 h-8 border-4 border-dark-gray border-t-primary-red
+         rounded-full animate-spin;
+}
